@@ -11,10 +11,10 @@ def load_data():
     Memuat dataset mahasiswa dari file CSV.
     Menggunakan @st.cache_data agar dataset tidak di-reload setiap kali user berinteraksi.
     """
-    data_path = 'student-data-clean.csv'
+    data_path = 'data/student-data-clean.csv'
     if not os.path.exists(data_path):
         # Fallback ke dataset mentah jika dataset bersih tidak ditemukan
-        data_path = 'student-data.csv'
+        data_path = 'data/student-data.csv'
         
     df = pd.read_csv(data_path)
     return df
