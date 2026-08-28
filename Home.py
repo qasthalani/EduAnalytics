@@ -6,7 +6,7 @@ import os
 # 0. KONFIGURASI HALAMAN (Harus Paling Atas)
 # ==========================================
 st.set_page_config(
-    page_title="EduAnalytics - Executive Dashboard",
+    page_title="EduAnalytics",
     page_icon="🎓",
     layout="wide"
 )
