@@ -57,7 +57,7 @@ with kpi3:
     # Akurasi model adalah nilai konstan hasil evaluasi test-set saat training ML
     st.metric(
         label="AI Model Accuracy", 
-        value="76.3%%", 
+        value="76.3%", 
         delta="Random Forest Optimized"
     )
 
