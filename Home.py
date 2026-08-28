@@ -1,31 +1,65 @@
 import streamlit as st
+import pandas as pd
+import os
 
-# 1. Konfigurasi Halaman (Wajib di baris paling atas)
-st.set_page_config(
-    page_title="EduAnalytics Dashboard",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
+# ==========================================
+# 1. LOAD DATASET DENGAN CACHING
+# ==========================================
+@st.cache_data
+def load_data():
+    """
+    Memuat dataset mahasiswa dari file CSV.
+    Menggunakan @st.cache_data agar dataset tidak di-reload setiap kali user berinteraksi.
+    """
+    data_path = 'student-data-clean.csv'
+    if not os.path.exists(data_path):
+        # Fallback ke dataset mentah jika dataset bersih tidak ditemukan
+        data_path = 'student-data.csv'
+        
+    df = pd.read_csv(data_path)
+    return df
 
-def main():
-    # Header & Penjelasan
-    st.title("EduAnalytics: Student Dropout Prediction")
-    st.markdown("""
-    Welcome To **EduAnalytics: Executive Dashboard & Prediction System**. 
-    This Application is designed to help campus management and academic advisors identify students who have a high risk of **Dropout (Leaving College)** as early as possible based on their academic history.
-    """)
-    st.divider()
+# Memuat data
+df = load_data()
 
-    # Tampilan KPI Dummy (Bisa dihubungkan dengan data asli nantinya)
-    st.subheader("Historical Key Performance Indicators (KPI)")
-    kpi1, kpi2, kpi3 = st.columns(3)
-    
-    with kpi1:
-        st.metric(label="Total Students", value="4,424", delta="Data 2023")
-    with kpi2:
-        st.metric(label="Historical Dropout Rate", value="32.1%", delta="-1.2% from last year", delta_color="normal")
-    with kpi3:
-        st.metric(label="AI Model Accuracy", value="81.5%", delta="Random Forest Optimized")
+# ==========================================
+# 2. PERHITUNGAN METRIK SECARA DINAMIS
+# ==========================================
+# Total Mahasiswa
+total_students = len(df)
+
+# Hitung Mahasiswa Dropout & Persentasenya
+dropout_count = (df['Status'] == 'Dropout').sum()
+dropout_rate = (dropout_count / total_students) * 100 if total_students > 0 else 0.0
+
+# ==========================================
+# 3. TAMPILKAN KPI CARDS
+# ==========================================
+st.subheader("Historical Key Performance Indicators (KPI)")
+kpi1, kpi2, kpi3 = st.columns(3)
+
+with kpi1:
+    st.metric(
+        label="Total Students", 
+        value=f"{total_students:,}", 
+        delta="Live Dataset"
+    )
+
+with kpi2:
+    st.metric(
+        label="Historical Dropout Rate", 
+        value=f"{dropout_rate:.1f}%", 
+        delta=f"{dropout_count:,} Students",
+        delta_color="normal"
+    )
+
+with kpi3:
+    # Akurasi model adalah nilai konstan hasil evaluasi test-set saat training ML
+    st.metric(
+        label="AI Model Accuracy", 
+        value="76.3%%", 
+        delta="Random Forest Optimized"
+    )
 
     st.divider()
 
