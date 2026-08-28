@@ -33,7 +33,7 @@ def load_data():
 # ==========================================
 def main():
     # Header Utama
-    st.title("EduAnalytics: Executive Dashboard")
+    st.title("EduAnalytics")
     st.markdown("""
     Welcome to **EduAnalytics: Executive Dashboard & Prediction System**. 
     This application helps management and academic advisors monitor student performance and identify dropout risks.
