@@ -103,7 +103,7 @@ if model is not None and scaler is not None:
             prediction = model.predict(scaled_input)[0]
             probabilities = model.predict_proba(scaled_input)[0]
             
-            st.markdown("###AI Prediction Results")
+            st.markdown("AI Prediction Results")
             
             # Asumsi Kelas: 0 untuk Dropout, 1 untuk Enrolled/Graduate (Cek label encodermu jika berbeda)
             prob_class_0 = probabilities[0] * 100
