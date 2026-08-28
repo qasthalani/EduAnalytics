@@ -1,4 +1,4 @@
-# Proyek Akhir Data Science: Prediksi Mahasiswa Dropout - Jaya Jaya Institut
+# EduAnalytics: Student Dropout Analysis Project
 
 ## Business Understanding
 
