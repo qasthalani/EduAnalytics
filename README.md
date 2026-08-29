@@ -75,12 +75,12 @@ Untuk membantu pihak manajemen Jaya Jaya Institut memantau performa mahasiswa se
 
 Sistem prediksi telah diintegrasikan ke dalam aplikasi web berbasis Streamlit dan di-deploy ke cloud agar dapat diakses oleh civitas akademika Jaya Jaya Institut.
 
-* **Link Aplikasi Streamlit Cloud:** [Isi dengan Link Streamlit Cloud Kamu di sini]
+* **Link Aplikasi Streamlit Cloud:** [https://eduanalytics-mqp7eutzn42jenyebirbpj.streamlit.app/]
 * **Cara Menjalankan Secara Lokal:**
   1. *Clone* repositori ini: `git clone <URL_REPOSITORI_GITHUB>`
   2. Masuk ke direktori proyek: `cd student-dropout-project`
   3. Install seluruh *dependencies*: `pip install -r requirements.txt`
-  4. Jalankan aplikasi Streamlit: `streamlit run student-dropout-app.py`
+  4. Jalankan aplikasi Streamlit: `streamlit run Home.py`
 
 ---
 
